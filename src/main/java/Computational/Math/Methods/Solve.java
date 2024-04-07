@@ -7,5 +7,5 @@ import java.util.function.Function;
 
 @FunctionalInterface
 public interface Solve {
-    MonospaceTable solve(Function<Double, Double> function, Double a, Double b, int n) throws MalformedTableException;
+    Double solve(Function<Double, Double> function, Double a, Double b, int n,boolean isNeedToPrint) throws MalformedTableException;
 }

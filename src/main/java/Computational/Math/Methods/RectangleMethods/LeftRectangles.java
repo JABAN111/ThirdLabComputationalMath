@@ -14,9 +14,10 @@ public class LeftRectangles extends AbstractMethod {
     }
 
     @Override
-    public MonospaceTable solve(Function<Double, Double> function, Double a, Double b, int n) throws MalformedTableException {
-        printMethodName();
-        var builder = getBuilder();
+    public Double solve(Function<Double, Double> function, Double a, Double b, int n,boolean isNeedToPrint) throws MalformedTableException {
+        if (isNeedToPrint)
+            printMethodName();
+        var builder = MonospaceTable.build();
         builder.columns("i","xi","fi","currentSum");
         double h = (b-a)/n;
         double currentX = a;
@@ -29,6 +30,10 @@ public class LeftRectangles extends AbstractMethod {
             result += previousFun*h;
             builder.row(i+"",String.format("%.3f",currentX),String.format("%.3f",function.apply(currentX)), String.format("%.3f",result));
         }
-        return builder.getTable();
+        if(isNeedToPrint){
+            System.out.println(builder.getTable());
+        }
+        return result;
+//        return builder.getTable();
     }
 }

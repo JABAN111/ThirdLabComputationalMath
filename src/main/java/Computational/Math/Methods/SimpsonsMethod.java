@@ -1,22 +1,29 @@
 package Computational.Math.Methods;
 
+import org.netirc.library.jtables.JTablesBuilder;
 import org.netirc.library.jtables.exception.MalformedTableException;
 import org.netirc.library.jtables.table.MonospaceTable;
 
 import java.util.function.Function;
 
 public class SimpsonsMethod extends AbstractMethod{
+//    private JTablesBuilder<MonospaceTable> builder = getBuilder();
     public SimpsonsMethod() {
         super("Метод симпсона");
     }
 
     @Override
-    public MonospaceTable solve(Function<Double, Double> function, Double a, Double b, int n) throws MalformedTableException {
-        printMethodName();
+    public Double solve(Function<Double, Double> function, Double a, Double b, int n,boolean isNeedToPrint) throws MalformedTableException {
+        JTablesBuilder<MonospaceTable> builder = MonospaceTable.build();
+        if(isNeedToPrint)
+            printMethodName();
+        if(n%2!=0){
+            System.err.println("Значение n для этого метода должно быть чётным иначе результат вычисления будет некорректным");
+            return null;
+        }
         var h = (b-a)/n;
         var sumaFromY1ToYLast = 0d;
         var sumaFromY2ToYPreLast = 0d;
-        var builder = getBuilder();
         builder.columns("result");
         for (int i = 1; i < n; i+=2) {
             sumaFromY1ToYLast += function.apply(a + i * h);
@@ -26,6 +33,10 @@ public class SimpsonsMethod extends AbstractMethod{
         }
         var result = (h/3) * (function.apply(a) + 4*sumaFromY1ToYLast + 2*sumaFromY2ToYPreLast + function.apply(b));
         builder.row(String.format("%.3f",result));
-        return builder.getTable();
+        if(isNeedToPrint) {
+            System.out.println("n=" + n);
+            System.out.println(builder.getTable());
+        }
+        return result;
     }
 }
