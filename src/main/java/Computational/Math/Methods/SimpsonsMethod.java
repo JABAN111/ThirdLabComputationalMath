@@ -1,0 +1,31 @@
+package Computational.Math.Methods;
+
+import org.netirc.library.jtables.exception.MalformedTableException;
+import org.netirc.library.jtables.table.MonospaceTable;
+
+import java.util.function.Function;
+
+public class SimpsonsMethod extends AbstractMethod{
+    public SimpsonsMethod() {
+        super("Метод симпсона");
+    }
+
+    @Override
+    public MonospaceTable solve(Function<Double, Double> function, Double a, Double b, int n) throws MalformedTableException {
+        printMethodName();
+        var h = (b-a)/n;
+        var sumaFromY1ToYLast = 0d;
+        var sumaFromY2ToYPreLast = 0d;
+        var builder = getBuilder();
+        builder.columns("result");
+        for (int i = 1; i < n; i+=2) {
+            sumaFromY1ToYLast += function.apply(a + i * h);
+        }
+        for (int i = 2; i < n-1; i+=2) {
+            sumaFromY2ToYPreLast += function.apply(a+ i * h);
+        }
+        var result = (h/3) * (function.apply(a) + 4*sumaFromY1ToYLast + 2*sumaFromY2ToYPreLast + function.apply(b));
+        builder.row(String.format("%.3f",result));
+        return builder.getTable();
+    }
+}

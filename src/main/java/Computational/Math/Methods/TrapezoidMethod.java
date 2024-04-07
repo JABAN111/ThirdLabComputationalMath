@@ -20,17 +20,15 @@ public class TrapezoidMethod extends AbstractMethod{
         //сумма yi, исключая 0 и последний
         var sumYi = 0d;
         var result = 0d;
-        builder.columns("i","xi","fi");
-        builder.row("0",String.format("%.3f",a),String.format("%.3f",y0));
+        builder.columns("i","xi","fi","result");
+        builder.row("0",String.format("%.3f",a),String.format("%.3f",y0),"-");
         for (int i = 1; i < n; i++) {
             sumYi += function.apply(a + h*i);
-            builder.row(i+"",String.format("%.3f",a+h*i),String.format("%.3f",function.apply(a + h*i)));
+            builder.row(i+"",String.format("%.3f",a+h*i),String.format("%.3f",function.apply(a + h*i)),"-");
         }
         result += h*((y0+yLast)/2 + sumYi);
-        builder.row(n+"",String.format("%.3f",b),String.format("%.3f",yLast));
+        builder.row(n+"",String.format("%.3f",b),String.format("%.3f",yLast),String.format("%.3f",result));
 
-        //sorry for this but komy now legko?
-        System.out.println("final answer: " + result);
         return builder.getTable();
     }
 }
