@@ -1,5 +1,8 @@
-package Computational.Math.Methods.RectangleMethods;
+package Computational.Math.Methods.tests;
 
+import Computational.Math.Methods.RectangleMethods.LeftRectangles;
+import Computational.Math.Methods.RectangleMethods.MiddleRectangles;
+import Computational.Math.Methods.RectangleMethods.RightRectangles;
 import org.junit.Test;
 import org.netirc.library.jtables.exception.MalformedTableException;
 
