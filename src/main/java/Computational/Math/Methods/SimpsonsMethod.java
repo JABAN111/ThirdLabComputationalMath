@@ -14,13 +14,12 @@ public class SimpsonsMethod extends AbstractMethod{
 
     @Override
     public Double solve(Function<Double, Double> function, Double a, Double b, int n,boolean isNeedToPrint) throws MalformedTableException {
+        if (n % 2 != 0){
+            throw new IllegalArgumentException("n должен быть четным для работы метода Симпсона!");
+        }
         JTablesBuilder<MonospaceTable> builder = MonospaceTable.build();
         if(isNeedToPrint)
             printMethodName();
-        if(n%2!=0){
-            System.err.println("Значение n для этого метода должно быть чётным иначе результат вычисления будет некорректным");
-            return null;
-        }
         var h = (b-a)/n;
         var sumaFromY1ToYLast = 0d;
         var sumaFromY2ToYPreLast = 0d;

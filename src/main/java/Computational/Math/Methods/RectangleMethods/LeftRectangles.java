@@ -1,7 +1,6 @@
 package Computational.Math.Methods.RectangleMethods;
 
 import Computational.Math.Methods.AbstractMethod;
-import org.netirc.library.jtables.JTablesBuilder;
 import org.netirc.library.jtables.exception.MalformedTableException;
 import org.netirc.library.jtables.table.MonospaceTable;
 
@@ -21,7 +20,7 @@ public class LeftRectangles extends AbstractMethod {
         builder.columns("i","xi","fi","currentSum");
         double h = (b-a)/n;
         double currentX = a;
-        double previousFun = 0;
+        double previousFun;
         double result = 0;
         builder.row("0",String.format("%.3f",currentX),String.format("%.3f",function.apply(currentX)), result +"");
         for (int i = 1; i < n + 1; i++) {
@@ -34,6 +33,5 @@ public class LeftRectangles extends AbstractMethod {
             System.out.println(builder.getTable());
         }
         return result;
-//        return builder.getTable();
     }
 }

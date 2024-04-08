@@ -12,43 +12,73 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) {
         FabricMethods fabricMethods = new FabricMethods();
-        try(BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))){
-            do{
+        try (BufferedReader bf = new BufferedReader(new InputStreamReader(System.in))) {
+            while (true) {
                 System.out.println("Выберите название метода: ");
                 fabricMethods.printNameMethods();
                 System.out.print(">>> ");
-                int idMethod = Integer.parseInt(bf.readLine());
+                String inputLine = bf.readLine();
+
+                if (inputLine == null || inputLine.isEmpty()) {
+                    System.out.println("Неверный выбор метода. Повторите попытку.");
+                    continue;
+                }
+                int idMethod = Integer.parseInt(inputLine);
                 MethodName methodName = getNameByID(idMethod);
+
                 System.out.println("Выберите одно из уравнений: ");
                 Functions.printFunctions();
                 System.out.print(">>> ");
-                int idFunction = Integer.parseInt(bf.readLine()) - 1;
+                inputLine =bf.readLine();
+                if (inputLine == null || inputLine.isEmpty()) {
+                    System.out.println("Неверный выбор метода. Повторите попытку.");
+                    continue;
+                }
+                int idFunction = Integer.parseInt(inputLine) - 1;
+                if (idFunction < 0 || idFunction >= Functions.getFunctions().size()) {
+                    System.out.println("Неверный выбор уравнения. Повторите попытку.");
+                    continue;
+                }
+
                 System.out.println("Выберите начало отрезка:");
                 System.out.print(">>> ");
-                double a = Integer.parseInt(bf.readLine());
+                inputLine = bf.readLine();
+                if (inputLine == null || inputLine.isEmpty()) {
+                    System.out.println("Неверный выбор отрезка. Повторите попытку.");
+                    continue;
+                }
+                double a = Double.parseDouble(inputLine);
+
                 System.out.println("Выберите конец отрезка:");
                 System.out.print(">>> ");
-                double b = Integer.parseInt(bf.readLine());
+                double b = Double.parseDouble(bf.readLine());
+
                 System.out.println("Выберите точность");
                 System.out.print(">>> ");
-                float epsilon = Float.parseFloat(bf.readLine());
-                fabricMethods.executeMethod(methodName,Functions.getFunctionById(idFunction)
-                ,a,b,epsilon);
-            }while (true);
-
-        }catch (IOException | MalformedTableException e){
-            System.err.println("Invalid input");
-            System.out.println(e.getMessage());
+                double epsilon = Double.parseDouble(bf.readLine());
+                try {
+                    fabricMethods.executeMethod(methodName, Functions.getFunctionById(idFunction), a, b, epsilon);
+                } catch (MalformedTableException e) {
+                    System.err.println("Ошибка при создании таблицы: " + e.getMessage());
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Ошибка ввода-вывода: " + e.getMessage());
+            System.exit(-1);
+        } catch (NumberFormatException e) {
+            System.err.println("Неверный формат числа: " + e.getMessage());
             System.exit(-1);
         }
     }
-    public static MethodName getNameByID(int id){
+
+    public static MethodName getNameByID(int id) {
         return switch (id) {
             case 1 -> MethodName.SIMPSON;
-            case 2 -> MethodName.RECTANGLES;
+            case 2 -> MethodName.RECTANGLES_LEFT;
+            case 3 -> MethodName.RECTANGLES_MIDDLE;
+            case 4 -> MethodName.RECTANGLES_RIGHT;
+            case 5 -> MethodName.TRAPEZOID;
             default -> null;
         };
-
-
     }
 }

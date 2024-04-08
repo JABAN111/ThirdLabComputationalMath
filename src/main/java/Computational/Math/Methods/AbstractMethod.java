@@ -1,21 +1,13 @@
 package Computational.Math.Methods;
 
-import org.netirc.library.jtables.JTablesBuilder;
-import org.netirc.library.jtables.table.MonospaceTable;
-
-import java.util.function.Function;
 
 public abstract class AbstractMethod implements Solve {
-    private String methodName;
-    private JTablesBuilder<MonospaceTable> builder = MonospaceTable.build();
+    private final String methodName;
 
     public AbstractMethod(String methodName) {
         this.methodName = methodName;
     }
 
-    public JTablesBuilder<MonospaceTable> getBuilder() {
-        return builder;
-    }
 
     public void printMethodName(){
         //156 это количество пунктиров в таблице
