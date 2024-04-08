@@ -56,6 +56,10 @@ public class Main {
                 System.out.println("Выберите точность");
                 System.out.print(">>> ");
                 double epsilon = Double.parseDouble(bf.readLine());
+                if(epsilon <= 0){
+                    System.err.println("Точность должна быть больше нуля");
+                    continue;
+                }
                 try {
                     fabricMethods.executeMethod(methodName, Functions.getFunctionById(idFunction), a, b, epsilon);
                 } catch (MalformedTableException e) {

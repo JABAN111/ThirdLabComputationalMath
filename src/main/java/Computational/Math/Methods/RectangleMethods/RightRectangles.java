@@ -23,6 +23,8 @@ public class RightRectangles extends AbstractMethod {
         for (int i = 0; i < n ; i++) {
             xCurrent += h;
             fCurrent = function.apply(xCurrent);
+            if(fCurrent.isInfinite())
+                return null;
             result += fCurrent*h;
             builder.row(i+"",String.format("%.3f",xCurrent),String.format("%.3f",fCurrent),String.format("%.3f",result));
         }

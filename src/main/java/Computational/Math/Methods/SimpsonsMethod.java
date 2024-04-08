@@ -25,10 +25,18 @@ public class SimpsonsMethod extends AbstractMethod{
         var sumaFromY2ToYPreLast = 0d;
         builder.columns("result");
         for (int i = 1; i < n; i+=2) {
-            sumaFromY1ToYLast += function.apply(a + i * h);
+            Double functionValue =function.apply(a + i * h);
+            if(functionValue.isInfinite()){
+                return null;
+            }
+            sumaFromY1ToYLast += functionValue;
         }
         for (int i = 2; i < n-1; i+=2) {
-            sumaFromY2ToYPreLast += function.apply(a+ i * h);
+            Double functionValue =function.apply(a + i * h);
+            if(functionValue.isInfinite()){
+                return null;
+            }
+            sumaFromY2ToYPreLast +=functionValue;
         }
         var result = (h/3) * (function.apply(a) + 4*sumaFromY1ToYLast + 2*sumaFromY2ToYPreLast + function.apply(b));
         builder.row(String.format("%.3f",result));

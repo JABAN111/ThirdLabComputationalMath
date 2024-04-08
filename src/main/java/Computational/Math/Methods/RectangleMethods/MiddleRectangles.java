@@ -27,6 +27,9 @@ public class MiddleRectangles extends AbstractMethod {
             var xMiddle = xPrev + h/2;
             xPrev += h;
             fMiddle = function.apply(xMiddle);
+            if(fMiddle.isInfinite() || function.apply(xPrev).isInfinite()){
+                return null;
+            }
             result+= h*fMiddle;
             builder.row("" +(i + 1), String.format("%.3f",xPrev),String.format("%.3f",function.apply(xPrev)),String.format("%.3f",xMiddle),
                     String.format("%.3f",fMiddle),String.format("%.3f",result));

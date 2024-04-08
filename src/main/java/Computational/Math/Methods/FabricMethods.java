@@ -19,17 +19,41 @@ public class FabricMethods {
     }
 
     public void executeMethod(MethodName methodName, Function<Double, Double> function, double a, double b, double accuracy) throws MalformedTableException {
+        if (!isConvergent(function, a, b)) {
+            System.out.println();
+            return;
+        }
+
         AbstractMethod method = getMethodByMethodName(methodName);
         var n = 4;
         Double Integral0 = method.solve(function, a, b, n, false);
+        if(Integral0 == null){
+            System.out.println("Интеграл не существует(расходится внутри)\n");
+            return;
+        }
+
         n *= 2;
         Double Integral1 = method.solve(function, a, b, n, false);
+        int maxIter = 20;
         while (!(Math.abs(Integral1 - Integral0) < accuracy)) {
             n *= 2;
             Integral0 = Integral1;
             Integral1 = method.solve(function, a, b, n, false);
+            maxIter--;
+            if(maxIter == 0){
+                System.out.println("Интеграл не существует(расходится внутри)\n");
+                return;
+            }
         }
         method.solve(function, a, b, n, true);
+    }
+
+    private boolean isConvergent(Function<Double, Double> function, double a, double b) {
+        if (function.apply(a).isInfinite() || function.apply(b).isInfinite()) {
+            System.out.println("Интеграл не существует");
+            return false;
+        }
+        return true;
     }
 
     public AbstractMethod getMethodByMethodName(MethodName methodName) {
