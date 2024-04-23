@@ -1,4 +1,4 @@
-package Computational.Math.Methods.tests;
+package tests;
 
 import Computational.Math.Methods.TrapezoidMethod;
 import org.junit.Test;
@@ -10,7 +10,7 @@ public class TrapezoidTest {
         TrapezoidMethod tr = new TrapezoidMethod();
         System.out.println(tr.solve(
                 x->x*x,
-                1d,2d,10,true
+                2d,4d,8,true
         ));
     }
 }

@@ -25,9 +25,8 @@ public class LeftRectangles extends AbstractMethod {
         builder.row("0",String.format("%.3f",currentX),String.format("%.3f",function.apply(currentX)), result +"");
         for (int i = 1; i < n + 1; i++) {
             previousFun = function.apply(currentX);
-            if(previousFun.isInfinite()){
+            if(previousFun.isInfinite())
                 return null;
-            }
             currentX += h;
             result += previousFun*h;
             builder.row(i+"",String.format("%.3f",currentX),String.format("%.3f",function.apply(currentX)), String.format("%.3f",result));

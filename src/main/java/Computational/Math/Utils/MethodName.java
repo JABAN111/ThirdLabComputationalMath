@@ -1,4 +1,4 @@
-package Computational.Math.Methods;
+package Computational.Math.Utils;
 
 public enum MethodName {
     RECTANGLES_LEFT,

@@ -1,8 +1,11 @@
-package Computational.Math.Methods;
+package Computational.Math.Utils;
 
+import Computational.Math.Methods.AbstractMethod;
 import Computational.Math.Methods.RectangleMethods.LeftRectangles;
 import Computational.Math.Methods.RectangleMethods.MiddleRectangles;
 import Computational.Math.Methods.RectangleMethods.RightRectangles;
+import Computational.Math.Methods.SimpsonsMethod;
+import Computational.Math.Methods.TrapezoidMethod;
 import org.netirc.library.jtables.exception.MalformedTableException;
 
 import java.util.ArrayList;

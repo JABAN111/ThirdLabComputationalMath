@@ -7,7 +7,6 @@ import org.netirc.library.jtables.table.MonospaceTable;
 import java.util.function.Function;
 
 public class SimpsonsMethod extends AbstractMethod{
-//    private JTablesBuilder<MonospaceTable> builder = getBuilder();
     public SimpsonsMethod() {
         super("Метод симпсона");
     }
@@ -25,7 +24,7 @@ public class SimpsonsMethod extends AbstractMethod{
         var sumaFromY2ToYPreLast = 0d;
         builder.columns("result");
         for (int i = 1; i < n; i+=2) {
-            Double functionValue =function.apply(a + i * h);
+            Double functionValue = function.apply(a + i * h);
             if(functionValue.isInfinite()){
                 return null;
             }

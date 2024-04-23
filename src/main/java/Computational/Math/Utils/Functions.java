@@ -1,8 +1,7 @@
-package Computational.Math.Methods;
+package Computational.Math.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import java.util.function.Function;
 
 public class Functions {

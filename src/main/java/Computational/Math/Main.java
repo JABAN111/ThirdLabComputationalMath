@@ -1,8 +1,8 @@
 package Computational.Math;
 
-import Computational.Math.Methods.FabricMethods;
-import Computational.Math.Methods.Functions;
-import Computational.Math.Methods.MethodName;
+import Computational.Math.Utils.FabricMethods;
+import Computational.Math.Utils.Functions;
+import Computational.Math.Utils.MethodName;
 import org.netirc.library.jtables.exception.MalformedTableException;
 
 import java.io.BufferedReader;

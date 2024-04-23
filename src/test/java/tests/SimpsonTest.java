@@ -1,4 +1,4 @@
-package Computational.Math.Methods.tests;
+package tests;
 
 import Computational.Math.Methods.SimpsonsMethod;
 import org.junit.Test;
@@ -9,6 +9,6 @@ public class SimpsonTest {
     public void testFromLecture() throws MalformedTableException {
         SimpsonsMethod sm = new SimpsonsMethod();
         System.out.println(sm.solve(x->x*x,
-                1d,2d,4,true));
+                2d,4d,8,true));
     }
 }

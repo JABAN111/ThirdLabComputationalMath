@@ -1,4 +1,4 @@
-package Computational.Math.Methods.tests;
+package tests;
 
 import Computational.Math.Methods.RectangleMethods.LeftRectangles;
 import Computational.Math.Methods.RectangleMethods.MiddleRectangles;
@@ -32,7 +32,7 @@ public class RectanglesTest {
     public void testRight() {
         var rf = new RightRectangles();
         try {
-            System.out.println(rf.solve(x -> x * x, 1d, 2d, 5,true));
+           rf.solve(x -> x * x, 2d, 4d, 8,true);
         } catch (MalformedTableException e) {
             System.err.println(e.getMessage());
         }
@@ -41,7 +41,7 @@ public class RectanglesTest {
     public void testMiddle(){
         var rf = new MiddleRectangles();
         try {
-            System.out.println(rf.solve(x -> x * x, 1d, 2d, 5,true));
+            System.out.println(rf.solve(x -> x * x, 2d, 4d, 8,true));
         } catch (MalformedTableException e) {
             System.err.println(e.getMessage());
         }
